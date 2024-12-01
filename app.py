@@ -1,10 +1,11 @@
 from transformers import pipeline
-
-pipe = pipeline('text2text-generation', model='google/flan-t5-base')
-
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS
+
+pipe = pipeline('text2text-generation', model='google/flan-t5-base')
 
 @app.route('/ai', methods=['POST'])
 def ai():
