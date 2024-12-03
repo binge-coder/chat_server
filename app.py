@@ -13,8 +13,8 @@ def ai():
         return jsonify({'error': 'data missing'}), 400
     text = request.get_json()['text']
     prompt = request.get_json()['prompt']
-    reply = pipe('Text: '+text+'. Prompt: '+prompt, max_length=512, do_sample=False)[0]['generated_text']
+    reply = pipe(''+text+''+prompt, max_length=512, do_sample=False)[0]['generated_text']
     return jsonify({'reply': reply})
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000, debug=False)
+    app.run(host='127.0.0.1', port=5000, debug=True)
